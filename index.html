@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f8f6">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Bartosz Niemczyk — portfolio CGI, wizualizacji 3D i muzyki. Projekty Nissan 300ZX, Volvo S90 Recharge, Ducati Scrambler, Traphouse Event Teaser oraz NOCMAR.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bartosz Niemczyk — CGI & Music">
+  <meta property="og:description" content="Wybrane prace CGI, wizualizacje 3D i muzyka Bartosza Niemczyka.">
+  <meta property="og:image" content="https://niebartek1.github.io/portfolio/images/thumbs/01.jpg">
+  <meta property="og:url" content="https://niebartek1.github.io/portfolio/">
+  <title>Bartosz Niemczyk — CGI & Music</title>
+  <link rel="icon" href="https://niebartek1.github.io/portfolio/images/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://niebartek1.github.io" crossorigin>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8f8f6;
+      --paper: #ffffff;
+      --ink: #161718;
+      --muted: #77797b;
+      --line: #dedfdf;
+      --soft-line: #e9e9e8;
+      --dark: #161819;
+      --content: 1296px;
+      --gutter: clamp(22px, 5vw, 76px);
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #6483a2; outline-offset: 4px; }
+    button { font: inherit; }
+    ::selection { background: #d4dfec; color: #0e1a26; }
+    .container { width: min(calc(100% - var(--gutter) * 2), var(--content)); margin-inline: auto; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .skip-link { position: fixed; top: 12px; left: 12px; transform: translateY(-150%); padding: 12px 16px; z-index: 1000; background: var(--ink); color: #fff; border-radius: 6px; }
+    .skip-link:focus { transform: translateY(0); }
+    .site-header { position: sticky; top: 0; z-index: 100; height: 72px; background: rgba(248,248,246,.91); border-bottom: 1px solid rgba(31,32,33,.075); -webkit-backdrop-filter: saturate(160%) blur(20px); backdrop-filter: saturate(160%) blur(20px); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; height: 100%; }
+    .wordmark { display: flex; align-items: center; gap: 11px; flex: 0 0 auto; font-size: 13px; font-weight: 650; letter-spacing: -.025em; }
+    .monogram { width: 31px; height: 31px; border: 1px solid #252626; display: grid; place-items: center; border-radius: 50%; font-size: 10px; letter-spacing: -.055em; font-weight: 680; }
+    .navigation { display: flex; align-items: center; gap: 35px; font-size: 12.5px; font-weight: 530; }
+    .navigation a:not(.nav-contact) { color: #595b5d; transition: color .2s ease; }
+    .navigation a:not(.nav-contact):hover { color: #111; }
+    .nav-contact { padding: 10px 18px; color: #fff; border-radius: 999px; background: #202122; transition: background .2s ease, transform .2s ease; }
+    .nav-contact:hover { background: #444648; transform: translateY(-1px); }
+    .menu-toggle { display: none; width: 42px; height: 42px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+    .menu-toggle span { display: block; width: 21px; height: 1.5px; margin: 5px auto; background: var(--ink); transition: transform .2s ease; }
+
+    /* Introduction */
+    .hero { padding-top: clamp(76px, 9.5vw, 148px); }
+    .hero-intro { display: grid; grid-template-columns: minmax(0, 1.42fr) minmax(220px, .54fr); grid-template-rows: auto 1fr; column-gap: clamp(28px, 5.8vw, 84px); align-items: start; }
+    .hero-identity { grid-column: 1; grid-row: 1; }
+    .hero-photo { grid-column: 2; grid-row: 1 / span 2; margin: 0; min-width: 0; width: 100%; max-width: 360px; justify-self: end; overflow: hidden; position: relative; background: #d6d6d2; aspect-ratio: 4 / 4.95; }
+    .hero-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 26%; }
+    .hero-photo figcaption { position: absolute; left: 17px; bottom: 15px; z-index: 2; color: #fff; text-shadow: 0 1px 10px rgba(0,0,0,.35); font-size: 10px; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; }
+    .hero-photo:has(img:not([src])) figcaption { color: #222; text-shadow: none; }
+    .eyebrow { margin: 0; color: #6c7072; font-size: 10.5px; font-weight: 650; letter-spacing: .16em; line-height: 1.5; text-transform: uppercase; }
+    .eyebrow::before { content: ""; display: inline-block; width: 21px; height: 1px; margin-right: 11px; vertical-align: middle; background: currentColor; }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { margin: 28px 0 0; font-size: clamp(62px, 7.5vw, 116px); font-weight: 580; line-height: .95; letter-spacing: -.082em; }
+    h1 span { display: block; }
+    .hero-aside { grid-column: 1; grid-row: 2; align-self: start; max-width: 620px; padding: 28px 0 0; }
+    .hero-aside p { margin: 0 0 14px; color: #5f6264; font-size: clamp(16px, 1.45vw, 19px); line-height: 1.72; letter-spacing: -.018em; }
+    .text-link { display: inline-flex; align-items: center; gap: 12px; border-bottom: 1px solid #56595b; padding-bottom: 8px; font-size: 12px; font-weight: 650; transition: gap .2s ease, border-color .2s ease; }
+    .text-link:hover { gap: 18px; border-color: #000; }
+    .arrow-icon { width: 14px; height: 14px; flex: none; }
+    .hero-stage { margin: clamp(56px, 6.5vw, 88px) 0 0; }
+    .hero-stage a { position: relative; display: block; overflow: hidden; background: #1c2020; aspect-ratio: 2.06 / 1; isolation: isolate; }
+    .hero-stage img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; transition: transform .75s cubic-bezier(.2,.7,.2,1); }
+    .hero-stage a:hover img { transform: scale(1.028); }
+    .visual-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 62%, rgba(0,0,0,.64) 100%); }
+    .stage-details { position: absolute; inset: auto 36px 30px; display: flex; align-items: end; justify-content: space-between; gap: 20px; color: white; }
+    .stage-index { display: block; margin-bottom: 7px; color: #dfdfdb; font-size: 10px; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; }
+    .stage-details strong { display: block; font-size: clamp(22px, 2.8vw, 34px); font-weight: 570; letter-spacing: -.055em; line-height: 1; }
+    .stage-view { display: inline-flex; gap: 9px; align-items: center; padding-bottom: 3px; font-size: 12px; font-weight: 600; }
+    .stage-view svg { transition: transform .2s ease; }
+    .hero-stage a:hover .stage-view svg { transform: translate(3px,-3px); }
+    .hero-caption { display: flex; align-items: center; justify-content: space-between; color: #848688; font-size: 10px; font-weight: 550; letter-spacing: .1em; text-transform: uppercase; padding-top: 18px; }
+
+    /* Work */
+    .section { padding-block: clamp(102px, 11vw, 170px); }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin-bottom: 38px; }
+    .section-heading h2 { margin: 20px 0 0; font-size: clamp(40px, 5vw, 72px); line-height: 1; font-weight: 580; letter-spacing: -.07em; }
+    .section-heading .section-aside { margin-bottom: 3px; max-width: 350px; font-size: 14px; color: #747679; line-height: 1.7; }
+    .work-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 24px; row-gap: 57px; }
+    .work-card { min-width: 0; }
+    .work-image { display: block; overflow: hidden; background: #e4e4e2; aspect-ratio: 1.48; }
+    .work-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+    .work-card a:hover .work-image img { transform: scale(1.035); }
+    .work-meta { display: flex; justify-content: space-between; gap: 20px; padding-top: 18px; }
+    .work-name { margin: 0; font-weight: 600; font-size: clamp(20px, 2vw, 27px); line-height: 1.2; letter-spacing: -.045em; }
+    .work-type { display: block; margin-top: 7px; color: #85878a; font-size: 12px; }
+    .work-number { padding-top: 4px; flex: none; color: #96989a; font-size: 10px; font-weight: 650; letter-spacing: .08em; }
+    .work-wide { display: grid; grid-template-columns: 1.35fr .65fr; align-items: stretch; grid-column: 1/-1; margin-top: 20px; background: #eeefec; }
+    .work-wide .work-image { aspect-ratio: 1.64; height: 100%; }
+    .work-wide .work-description { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(25px,3.5vw,50px); }
+    .work-wide .work-meta { padding: 0; }
+    .work-wide .work-name { font-size: clamp(24px,3vw,44px); }
+    .work-wide .work-type { margin-top: 12px; }
+    .work-wide .wide-link { margin-top: 30px; }
+    .more-work { display: flex; justify-content: center; margin-top: 54px; }
+    .outline-button { display: inline-flex; justify-content: center; align-items: center; gap: 19px; padding: 16px 22px; min-width: 218px; border: 1px solid #c3c5c4; border-radius: 999px; font-size: 12px; font-weight: 600; transition: background .2s ease,border-color .2s ease; }
+    .outline-button:hover { background: #efefed; border-color: #777; }
+
+    /* About */
+    .about-section { border-block: 1px solid var(--soft-line); background: #fff; padding: clamp(76px, 8vw, 120px) 0; }
+    .about-grid { display: grid; grid-template-columns: minmax(180px, .54fr) minmax(0, 1fr); gap: clamp(40px, 9vw, 130px); align-items: start; }
+    .about-label { padding-top: 12px; }
+    .about-label .eyebrow { white-space: nowrap; }
+    .about-copy h2 { max-width: 740px; margin: 0 0 30px; font-size: clamp(37px,4.45vw,67px); font-weight: 560; letter-spacing: -.068em; line-height: 1.07; }
+    .about-copy p:not(.eyebrow) { max-width: 550px; font-size: 16px; line-height: 1.85; letter-spacing: -.01em; color: #656769; }
+    .about-facts { display: flex; flex-wrap: wrap; gap: 14px 26px; margin-top: 28px; padding-top: 18px; border-top: 1px solid #e6e6e5; color: #6d6f71; font-size: 11px; }
+    .about-facts span { display: inline-flex; gap: 9px; align-items: center; }
+    .fact-dot { width: 4px; height: 4px; background: #a6a8a8; border-radius: 50%; }
+
+    /* Music */
+    .music-section { color: #f7f7f5; background: #191b1c; padding-block: clamp(90px,10vw,150px); }
+    .music-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(250px,.76fr); align-items: center; gap: clamp(50px,9vw,160px); }
+    .music-section .eyebrow { color: #a7aaab; }
+    .music-copy h2 { margin: 28px 0; font-size: clamp(70px,9vw,145px); font-weight: 560; letter-spacing: -.09em; line-height: .93; }
+    .music-copy p:not(.eyebrow) { max-width: 440px; color: #a6a9aa; font-size: 16px; line-height: 1.75; }
+    .music-link { display: inline-flex; align-items: center; gap: 15px; margin-top: 34px; padding: 14px 20px; border-radius: 999px; color: #171819; background: #f2f3ef; font-size: 12px; font-weight: 650; transition: background .2s ease,transform .2s ease; }
+    .music-link:hover { background: #dcded8; transform: translateY(-2px); }
+    .spotify-mark { width: 18px; height: 18px; }
+    .music-art { display: block; width: min(100%,470px); justify-self: end; aspect-ratio: 1; background: #272829; overflow: hidden; }
+    .music-art img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: grayscale(100%); transition: filter .5s ease,transform .7s ease; }
+    .music-art:hover img { filter: grayscale(30%); transform: scale(1.02); }
+    .music-credit { display: block; margin-top: 15px; text-align: right; color: #747778; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }
+
+    /* Contact / footer */
+    .contact-section { padding-block: clamp(100px,11vw,170px) clamp(90px,9vw,140px); }
+    .contact-top { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+    .contact-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .contact-mail { color: #6a6d70; font-size: 15px; line-height: 1.6; }
+    .contact-mail a { border-bottom: 1px solid #b8bbbd; padding-bottom: 2px; }
+    .contact-mail a:hover { color: #111; border-color: #111; }
+    .contact-section h2 { margin: 26px 0 0; font-size: clamp(49px,7vw,103px); font-weight: 570; line-height: 1; letter-spacing: -.08em; }
+    .contact-button { display: inline-flex; align-items: center; justify-content: center; gap: 20px; flex: none; margin-bottom: 0; padding: 17px 23px; border-radius: 999px; background: #17191a; color: white; font-size: 12px; font-weight: 610; transition: transform .2s ease,background .2s ease; }
+    .contact-button:hover { transform: translateY(-2px); background: #404345; }
+    .site-footer { border-top: 1px solid #dddedd; }
+    .footer-inner { padding-block: 30px 34px; display: flex; justify-content: space-between; align-items: center; gap: 30px; color: #848688; font-size: 11px; }
+    .footer-links { display: flex; gap: 26px; }
+    .footer-links a:hover { color: #161718; }
+    .back-to-top { color: #696b6d; }
+    .back-to-top:hover { color: #161718; }
+
+    @media (max-width: 950px) {
+      .hero-intro { grid-template-columns: minmax(0, 1.3fr) minmax(200px, .62fr); column-gap: 24px; }
+      h1 { font-size: clamp(55px, 7.5vw, 84px); }
+      .hero-photo { max-width: 300px; }
+      .hero-aside { padding: 24px 0 0; }
+      .hero-aside p { margin-bottom: 18px; }
+      .section-heading { align-items: start; }
+      .section-heading .section-aside { max-width: 285px; }
+      .about-grid { gap: 50px; }
+      .music-grid { gap: 48px; }
+    }
+    @media (max-width: 680px) {
+      .site-header { height: 64px; }
+      .wordmark { font-size: 12px; }
+      .menu-toggle { display: block; }
+      .navigation { position: absolute; top: 64px; left: 0; right: 0; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 12px var(--gutter) 24px; border-bottom: 1px solid #dedfdd; background: rgba(248,248,246,.98); box-shadow: 0 22px 25px -22px rgba(0,0,0,.16); visibility: hidden; opacity: 0; transform: translateY(-7px); pointer-events: none; transition: opacity .18s ease, transform .18s ease, visibility .18s ease; }
+      .site-header.menu-open .navigation { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; }
+      .navigation a:not(.nav-contact) { display: block; padding: 15px 2px; border-bottom: 1px solid #e5e5e4; font-size: 14px; }
+      .nav-contact { display: block; text-align: center; margin-top: 17px; padding: 13px; }
+      .site-header.menu-open .menu-toggle span:first-child { transform: translateY(3.25px) rotate(45deg); }
+      .site-header.menu-open .menu-toggle span:last-child { transform: translateY(-3.25px) rotate(-45deg); }
+      .hero { padding-top: 64px; }
+      .hero-intro { grid-template-columns: 1fr; grid-template-rows: auto auto auto; gap: 0; }
+      .hero-identity { grid-column: 1; grid-row: 1; }
+      h1 { margin-top: 22px; font-size: clamp(56px, 12.3vw, 82px); }
+      .hero-photo { grid-column: 1; grid-row: 2; width: min(72vw, 320px); max-width: 320px; aspect-ratio: 1 / 1.12; margin-top: 28px; justify-self: start; }
+      .hero-photo img { object-position: center 24%; }
+      .hero-aside { grid-column: 1; grid-row: 3; max-width: 450px; padding: 24px 0 0; }
+      .hero-aside p { font-size: 16px; }
+      .hero-stage { margin-top: 65px; }
+      .hero-stage a { aspect-ratio: 1 / 1.08; }
+      .hero-stage img { object-position: 53% 62%; }
+      .stage-details { inset: auto 19px 19px; }
+      .stage-details strong { font-size: 23px; }
+      .stage-view { font-size: 0; gap: 0; }
+      .stage-view .arrow-icon { width: 20px; height: 20px; }
+      .hero-caption { padding-top: 12px; font-size: 9px; }
+      .section { padding-block: 94px; }
+      .section-heading { display: block; margin-bottom: 32px; }
+      .section-heading h2 { margin-top: 16px; font-size: 45px; }
+      .section-heading .section-aside { margin: 16px 0 0; max-width: 340px; }
+      .work-grid { grid-template-columns: 1fr; gap: 42px; }
+      .work-image { aspect-ratio: 1.45; }
+      .work-name { font-size: 22px; }
+      .work-wide { display: block; grid-column: auto; margin-top: 0; }
+      .work-wide .work-image { height: auto; aspect-ratio: 1.45; }
+      .work-wide .work-description { padding: 24px; min-height: 190px; }
+      .work-wide .work-name { font-size: 27px; }
+      .more-work { margin-top: 42px; }
+      .about-section { padding-block: 84px; }
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .about-label { padding-top: 0; }
+      .about-copy h2 { font-size: 43px; }
+      .about-copy p:not(.eyebrow) { font-size: 15px; }
+      .about-facts { margin-top: 32px; }
+      .music-section { padding-block: 86px; }
+      .music-grid { grid-template-columns: 1fr; gap: 48px; }
+      .music-copy h2 { font-size: clamp(74px,16vw,110px); }
+      .music-art { justify-self: start; width: min(100%,440px); }
+      .music-credit { text-align: left; }
+      .contact-section { padding-block: 94px 96px; }
+      .contact-top { display: block; }
+      .contact-actions { margin-top: 0; }
+      .contact-mail { font-size: 14px; }
+      .contact-section h2 { margin-bottom: 34px; font-size: clamp(54px,12vw,80px); }
+      .contact-button { margin: 0; }
+      .footer-inner { align-items: start; flex-direction: column; gap: 19px; }
+      .footer-links { gap: 20px; }
+    }
+    @media (max-width: 370px) {
+      h1 { font-size: 53px; }
+      .hero-caption span:last-child { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="top" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="wordmark" href="#top" aria-label="Bartosz Niemczyk — początek strony">
+        <span class="monogram" aria-hidden="true">BN</span>
+        <span>Bartosz Niemczyk</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="Otwórz menu">
+        <span></span><span></span>
+      </button>
+      <nav class="navigation" id="navigation" aria-label="Menu główne">
+        <a href="#projekty">Projekty</a>
+        <a href="#omnie">O mnie</a>
+        <a href="#muzyka">Muzyka</a>
+        <a class="nav-contact" href="#kontakt">Kontakt <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" id="omnie" aria-labelledby="hero-title">
+      <div class="hero-intro">
+        <div class="hero-identity">
+          <p class="eyebrow">O mnie / CGI &amp; Music</p>
+          <h1 id="hero-title"><span>Bartosz</span><span>Niemczyk.</span></h1>
+        </div>
+        <figure class="hero-photo">
+          <img src="https://niebartek1.github.io/portfolio/images/cv2.png" alt="Portret Bartosza Niemczyka" width="760" height="1000" fetchpriority="high" decoding="async">
+        </figure>
+        <div class="hero-aside">
+          <p>Jestem Bartosz Niemczyk. Studiuję na AGH, a swoją kreatywność rozwijam w dwóch obszarach: grafice 3D i komponowaniu muzyki.</p>
+          <p>W tym portfolio prezentuję własne prace CGI, projekt zrealizowany na zlecenie oraz muzykę tworzoną pod nazwą NOCMAR.</p>
+          <div class="about-facts"><span><span class="fact-dot" aria-hidden="true"></span>Grafika 3D / CGI</span><span><span class="fact-dot" aria-hidden="true"></span>Kompozycja muzyki</span><span><span class="fact-dot" aria-hidden="true"></span>AGH</span></div>
+        </div>
+      </div>
+      <figure class="hero-stage">
+        <a href="https://www.behance.net/gallery/176409725/Nissan-300zx-(CGI)" target="_blank" rel="noopener noreferrer" aria-label="Zobacz projekt Nissan 300ZX na Behance (otwiera nową kartę)">
+          <img src="https://niebartek1.github.io/portfolio/images/thumbs/01.jpg" alt="Wizualizacja CGI czarnego Nissana 300ZX w miejskim otoczeniu" width="1000" height="667" fetchpriority="high" decoding="async">
+          <span class="visual-shade" aria-hidden="true"></span>
+          <span class="stage-details">
+            <span><span class="stage-index">Projekt personalny / 01</span><strong>Nissan 300ZX</strong></span>
+            <span class="stage-view">Zobacz projekt <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M7 6h11v11"/></svg></span>
+          </span>
+        </a>
+        <figcaption class="hero-caption"><span>CGI / Automotive</span><span>01 — 04 / Wybrane realizacje</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="section container" id="projekty" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / Wybrane realizacje</p>
+          <h2 id="projects-title">Projekty CGI.</h2>
+        </div>
+        <p class="section-aside">Wizualizacje motoryzacyjne, projekty autorskie oraz praca zrealizowana na zlecenie.</p>
+      </div>
+
+      <div class="work-grid">
+        <article class="work-card">
+          <a href="https://www.behance.net/gallery/152420833/Volvo-S90-Recharge-(CGI)" target="_blank" rel="noopener noreferrer" aria-label="Volvo S90 Recharge — otwórz projekt na Behance">
+            <span class="work-image"><img src="https://niebartek1.github.io/portfolio/images/thumbs/02.jpg" alt="Ciemne Volvo S90 Recharge, wizualizacja CGI z widokiem od przodu" width="1000" height="667" loading="lazy" decoding="async"></span>
+            <span class="work-meta"><span><span class="work-name" role="heading" aria-level="3">Volvo S90 Recharge</span><span class="work-type">Projekt personalny · CGI</span></span><span class="work-number">02 / 04 ↗</span></span>
+          </a>
+        </article>
+        <article class="work-card">
+          <a href="https://www.behance.net/gallery/175457069/Ducati-Scrambler-(CGI)" target="_blank" rel="noopener noreferrer" aria-label="Ducati Scrambler — otwórz projekt na Behance">
+            <span class="work-image"><img src="https://niebartek1.github.io/portfolio/images/thumbs/03.jpg" alt="Motocykl Ducati Scrambler na tle ciepłego pustynnego krajobrazu, render CGI" width="1000" height="667" loading="lazy" decoding="async"></span>
+            <span class="work-meta"><span><span class="work-name" role="heading" aria-level="3">Ducati Scrambler</span><span class="work-type">Projekt personalny · CGI</span></span><span class="work-number">03 / 04 ↗</span></span>
+          </a>
+        </article>
+        <article class="work-card work-wide">
+          <a href="https://www.behance.net/gallery/165591593/Traphouse-Event-Teaser-(CGI)" target="_blank" rel="noopener noreferrer" class="work-image" aria-label="Traphouse Event Teaser — otwórz projekt na Behance">
+            <img src="https://niebartek1.github.io/portfolio/images/thumbs/04.jpg" alt="Kadr z CGI Traphouse Event Teaser przedstawiający wnętrze z plakatami i graffiti" width="1000" height="667" loading="lazy" decoding="async">
+          </a>
+          <div class="work-description">
+            <p class="eyebrow">Realizacja na zlecenie</p>
+            <div>
+              <div class="work-meta"><div><h3 class="work-name">Traphouse<br>Event Teaser</h3><span class="work-type">Projekt zleceniowy · CGI</span></div><span class="work-number">04 / 04</span></div>
+              <a href="https://www.behance.net/gallery/165591593/Traphouse-Event-Teaser-(CGI)" class="text-link wide-link" target="_blank" rel="noopener noreferrer">Zobacz projekt
+                <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M7 6h11v11"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="more-work"><a class="outline-button" href="https://www.behance.net/bartoszniemczyk" target="_blank" rel="noopener noreferrer">Więcej prac na Behance <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+
+    <section class="music-section" id="muzyka" aria-labelledby="music-title">
+      <div class="music-grid container">
+        <div class="music-copy">
+          <p class="eyebrow">02 / Muzyka</p>
+          <h2 id="music-title">NOCMAR.</h2>
+          <p>Obok grafiki 3D rozwijam również własne projekty muzyczne. Moje utwory znajdziesz na Spotify pod nazwą NOCMAR.</p>
+          <a class="music-link" href="https://open.spotify.com/artist/4rnsFcRvo1aa1k4gIyUKtD?si=FUJLoFWuQAuDpRDYm5eV9Q" target="_blank" rel="noopener noreferrer">
+            <svg class="spotify-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1db954"/><path d="M5.5 9.3c4.9-1.5 10.5-.8 14.2 1.4M6.4 12.8c4.2-1.2 9-.6 12.2 1.2m-11.3 2.2c3.6-.9 7.5-.4 10.1 1.1" fill="none" stroke="#132218" stroke-linecap="round" stroke-width="1.6"/></svg>
+            Posłuchaj na Spotify <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div>
+          <a class="music-art" href="https://open.spotify.com/artist/4rnsFcRvo1aa1k4gIyUKtD?si=FUJLoFWuQAuDpRDYm5eV9Q" target="_blank" rel="noopener noreferrer" aria-label="NOCMAR — profil na Spotify">
+            <img src="https://niebartek1.github.io/portfolio/images/thumbs/07.jpg" alt="Oryginalna grafika prezentująca profil artysty NOCMAR na Spotify" width="799" height="799" loading="lazy" decoding="async">
+          </a>
+          <span class="music-credit">NOCMAR / Spotify</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section container" id="kontakt" aria-labelledby="contact-title">
+      <p class="eyebrow">03 / Kontakt</p>
+      <div class="contact-top">
+        <h2 id="contact-title">Masz pomysł<br>na projekt?</h2>
+        <div class="contact-actions">
+          <a href="mailto:niebartek2003@gmail.com" class="contact-button">Napisz do mnie
+            <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M7 6h11v11"/></svg>
+          </a>
+          <div class="contact-mail">Email: <a href="mailto:niebartek2003@gmail.com">niebartek2003@gmail.com</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <span>© <span id="current-year">2026</span> Bartosz Niemczyk</span>
+      <div class="footer-links">
+        <a href="https://www.behance.net/bartoszniemczyk" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+        <a href="https://open.spotify.com/artist/4rnsFcRvo1aa1k4gIyUKtD?si=FUJLoFWuQAuDpRDYm5eV9Q" target="_blank" rel="noopener noreferrer">Spotify ↗</a>
+        <a href="https://github.com/niebartek1/portfolio" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+      <a class="back-to-top" href="#top">Do góry ↑</a>
+    </div>
+  </footer>
+  <script>
+    (() => {
+      const header = document.querySelector('.site-header');
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('#navigation');
+      const closeMenu = () => {
+        header.classList.remove('menu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Otwórz menu');
+      };
+      toggle.addEventListener('click', () => {
+        const next = !header.classList.contains('menu-open');
+        header.classList.toggle('menu-open', next);
+        toggle.setAttribute('aria-expanded', String(next));
+        toggle.setAttribute('aria-label', next ? 'Zamknij menu' : 'Otwórz menu');
+      });
+      nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+      document.addEventListener('click', e => { if (!header.contains(e.target)) closeMenu(); });
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
